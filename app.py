@@ -10,7 +10,7 @@ CURRENCY = "USD"
 UNIT = "toz"
 INR_CONVERSION_RATE = 84.0  # Approximate; can update dynamically using forex API
 
-METALS = ["gold", "silver", "platinum", "copper", "iron"]
+METALS = ["gold", "silver", "platinum", "copper", "aluminium"]
 
 
 def fetch_prices(date=None):
