@@ -1,0 +1,136 @@
+/* =========================================
+   GLOBAL STYLES
+   ========================================= */
+body {
+    background-color: #f8f9fa;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #212529;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-weight: 700;
+    color: #212529;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+}
+
+.container {
+    max-width: 900px;
+}
+
+/* =========================================
+   TABLE STYLING
+   ========================================= */
+.table {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.table th {
+    background-color: #212529 !important;
+    color: #ffffff;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.4px;
+    border: none;
+}
+
+.table td {
+    font-size: 1rem;
+    vertical-align: middle !important;
+    border-color: #dee2e6;
+    padding: 0.8rem;
+}
+
+/* Add hover effect for better UX */
+.table tbody tr:hover {
+    background-color: #f1f3f5;
+    transition: background 0.2s ease-in-out;
+}
+
+/* =========================================
+   PERCENTAGE CHANGE COLORS
+   ========================================= */
+.increase {
+    color: #28a745 !important;
+    font-weight: 600;
+}
+
+.decrease {
+    color: #dc3545 !important;
+    font-weight: 600;
+}
+
+/* =========================================
+   TREND CHART
+   ========================================= */
+canvas {
+    display: inline-block;
+    max-width: 120px;
+    height: 50px !important;
+}
+
+/* =========================================
+   FOOTER STYLING
+   ========================================= */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #6c757d;
+    padding-bottom: 20px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #0d6efd;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .table th, .table td {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    canvas {
+        max-width: 90px;
+        height: 40px !important;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .table th, .table td {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+
+    canvas {
+        max-width: 70px;
+        height: 35px !important;
+    }
+}

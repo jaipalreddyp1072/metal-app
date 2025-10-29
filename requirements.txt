@@ -1,0 +1,11 @@
+# Flask web framework
+Flask==3.0.3
+
+# For API calls to Metals.dev
+requests==2.32.3
+
+# For handling JSON data safely
+simplejson==3.19.2
+
+# Optional: useful in Dockerized deployments for production servers
+gunicorn==23.0.0
