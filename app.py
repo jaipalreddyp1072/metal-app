@@ -12,6 +12,7 @@ INR_CONVERSION_RATE = 84.0  # Approximate; can update dynamically using forex AP
 
 METALS = ["gold", "silver", "platinum", "copper", "iron"]
 
+
 def fetch_prices(date=None):
     """Fetch metal prices from Metals.dev API"""
     params = {
@@ -37,21 +38,27 @@ def fetch_prices(date=None):
 
     except Exception as e:
         print(f"❌ Error fetching API data: {e}")
-        return {}
+        return {metal.capitalize(): 0.0 for metal in METALS}
 
 
 def calculate_change(today, yesterday):
-    """Calculate daily percentage change"""
-    change = {}
-    for metal, today_price in today.items():
+    """Return structured dict: {metal: {today, yesterday, change_percent}}"""
+    structured = {}
+    for metal in today.keys():
+        today_price = today.get(metal, 0)
         y_price = yesterday.get(metal, 0)
         if y_price > 0:
             diff = today_price - y_price
-            percent = (diff / y_price) * 100
-            change[metal] = round(percent, 2)
+            percent = round((diff / y_price) * 100, 2)
         else:
-            change[metal] = 0.0
-    return change
+            percent = 0.0
+
+        structured[metal] = {
+            "today": today_price,
+            "yesterday": y_price,
+            "change_percent": percent
+        }
+    return structured
 
 
 @app.route("/")
@@ -62,21 +69,13 @@ def index():
     today_prices = fetch_prices(today.isoformat())
     yesterday_prices = fetch_prices(yesterday.isoformat())
 
-    # Handle case if API fails
-    if not today_prices:
-        today_prices = {metal.capitalize(): 0.0 for metal in METALS}
-    if not yesterday_prices:
-        yesterday_prices = {metal.capitalize(): 0.0 for metal in METALS}
-
-    change_percentages = calculate_change(today_prices, yesterday_prices)
+    prices = calculate_change(today_prices, yesterday_prices)
 
     return render_template(
         "index.html",
         today=today.strftime("%d %b %Y"),
         yesterday=yesterday.strftime("%d %b %Y"),
-        prices=today_prices,
-        yesterday_prices=yesterday_prices,
-        changes=change_percentages,
+        prices=prices
     )
 
 
